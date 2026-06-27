@@ -1,73 +1,167 @@
-# Build Challenge — PHP / Laravel Developer
+# Laravel Livewire Task Manager
 
-Thanks for applying. This is a short build challenge. A senior Laravel
-developer using AI tooling should finish it in **about 45 minutes**.
+A simple and clean task management application built using Laravel 11, Livewire 3, Volt and MySQL.
 
-You are **encouraged to use Claude Code / Cursor** — that is part of what we are
-evaluating. The one rule: **you must commit your AI conversation** (see step 4).
+This project was created as part of a PHP / Laravel Developer build challenge.
 
-## Stack (required)
+---
+
+## Tech Stack
+
 - PHP 8.3+
 - Laravel 11
 - Livewire 3
-- Volt (single-file components)
-- Pest (tests are already written for you)
+- Laravel Volt (Single File Component)
 - MySQL
+- Pest Testing
 
-These are already installed in this template. Do not change versions.
+---
 
-## The task
-Build a single **Volt single-file component** that manages a task list, backed
-by a MySQL table through Eloquent.
+## Features
 
-It must:
-1. **List** all tasks.
-2. **Create** a task from a title input. An empty title must be rejected with a
-   validation error and must not be saved.
-3. **Toggle** a task between complete and incomplete.
+- View all tasks
+- Create a new task using title input
+- Validate task title before saving
+- Reject empty task titles
+- Toggle task status:
+  - Complete
+  - Incomplete
 
-Keep it simple and clean. We are reading your code, not grading visual design.
+---
 
-## The contract (build to this exactly — the tests depend on it)
-A migration creates a **`tasks`** table with these columns: `id`, `title`
-(string), `completed` (boolean, default `false`), `created_at`, `updated_at`.
+## Installation
 
-A **`Task`** Eloquent model (`App\Models\Task`) with `title` and `completed`
-mass-assignable.
+Clone Repository:
 
-A Volt component named **`tasks`** (file:
-`resources/views/livewire/tasks.blade.php`) mounted at the route **`/tasks`**,
-with:
-- a public property **`$title`** (string),
-- a method **`addTask()`** that validates `title` as `required|string|max:255`,
-  creates the task, and resets `$title`,
-- a method **`toggle($id)`** that flips that task's `completed` value.
+```bash
+git clone https://github.com/harshmoyade/laravel-livewire-challenge.git
+```
 
-The provided Pest suite (`tests/Feature/TaskListTest.php`) checks all of the
-above. Do not edit the test file.
+Go to project directory:
 
-## Run the tests locally
+```bash
+cd laravel-livewire-challenge
+```
+
+Install dependencies:
+
 ```bash
 composer install
+npm install
+```
+
+Create environment file:
+
+```bash
 cp .env.example .env
+```
+
+Generate application key:
+
+```bash
 php artisan key:generate
-# point .env at your local MySQL, then:
+```
+
+---
+
+## Database Configuration
+
+Update `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel_livewire_challenge
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Run migration:
+
+```bash
 php artisan migrate
+```
+
+---
+
+## Run Application
+
+Laravel server:
+
+```bash
+php artisan serve
+```
+
+Vite:
+
+```bash
+npm run dev
+```
+
+Open:
+
+```
+http://127.0.0.1:8000/tasks
+```
+
+---
+
+## Testing
+
+Run:
+
+```bash
 php artisan test
 ```
-Green across the board = you have met the spec.
 
-## Submit
-1. Click **"Use this template"** at the top of this repo to make your own copy.
-   Keep it **public**.
-2. Build the task. Commit as you go.
-3. **Commit your AI conversation** as a file named **`AI-CONVERSATION.md`** at
-   the repo root — paste the full conversation you had with Claude / Cursor
-   while building this. This is required; an entry without it is incomplete.
-4. **Push.** GitHub Actions runs the test suite automatically — you'll see a
-   green check or red X on your latest commit.
-5. Go back to the application form and **paste your repository URL** into the
-   "Build challenge" field.
+---
 
-That's it. We review your code, your test result, and how you worked with AI,
-all from your repo. Good luck.
+## Project Structure
+
+Task Model:
+
+```
+app/Models/Task.php
+```
+
+Migration:
+
+```
+database/migrations/create_tasks_table.php
+```
+
+Volt Component:
+
+```
+resources/views/livewire/tasks.blade.php
+```
+
+Route:
+
+```
+/tasks
+```
+
+---
+
+## AI Assistance
+
+AI tools were used during development for:
+
+- Environment setup
+- Debugging
+- Implementation guidance
+- Code review assistance
+
+Full AI conversation:
+
+```
+AI-CONVERSATION.md
+```
+
+---
+
+## Author
+
+Harsh Moyade
